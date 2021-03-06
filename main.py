@@ -10,17 +10,27 @@
 #B# Add a condition so that no blanks are printed.
 #C# Count the number of email addresses found and print a final output line.
 
+import re
+
+print("Task 1\n") #Just to space out the results so that it doesnt hurt my eyes
+
 def reEmail(fname):
   
+  count = 0
+
   fhand = open(fname,'r')
   for line in fhand:
-    extr = re.findall('.*',line)
+    
+    extr = re.findall('\S+@\S+',line)
     if len(extr): 
+      count += 1
       print(extr)
         
-
-  print()
+  print("There are", count, "email addresses in", fname)
     
+reEmail('rural-staff.txt')
+
+print("\n Task 2 \n") #Just to space out the results so that it doesnt hurt my eyes
 
 '''### Task 1 Results for 
 >reEmail('rural-staff.txt')
@@ -37,9 +47,13 @@ There were 89 email addresses in rural-staff.txt
 def reAward(fname):
   fhand = open(fname, 'r')
   for line in fhand:
-    extr = re.findall('.*', line)
+    extr = re.findall('- (.*)', line)
     if len(extr):
       print(extr)
+
+reAward('rural-athletics.txt')
+
+print("\n Task 3 \n") #Just to space out the results so that it doesnt hurt my eyes
 
 '''### Task 2 Results for
 >reAward('rural-athletics.txt')
@@ -49,14 +63,22 @@ def reAward(fname):
 ###'''
 
 ##(/5) Task 3: CREATE code that will open a file and extract all the phone numbers 
+ #open file
+#loop through the file
+#extract the specific phone numbers regex
+#if the length of the extraction is not empty
+#print the phone number
 
 def rePhone(fname):
-  #open file
-  #loop through the file
-  #extract the specific phone numbers regex
-  #if the length of the extraction is not empty
-  #print the phone number
-  pass
+  fhand = open(fname,'r')
+  for line in fhand:
+    
+    extr = re.findall('902.*', line) # or 'PH: (.*)' if numbers are not only based in PEI
+    if len(extr): 
+      print(extr)
+
+rePhone('rural-staff.txt')
+ 
 
 '''### Task 3 results
 >rePhone('rural-staff.txt')
